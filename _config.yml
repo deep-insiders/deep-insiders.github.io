@@ -1,31 +1,73 @@
-# Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+# Outputting
+permalink: /:categories/:year/:month/:day/:title.html
 
-# Permalinks
-permalink:        pretty
-# relative_permalinks: true
+# Conversion
+markdown:         kramdown
+highlighter:      rouge
+excerpt_separator: <!--more-->
 
-# Setup
-title:            DL/ML Notes
-tagline:          'A Jekyll theme'
-description:      '좋은 글을 모으고 좋은 글을 씁시다'
-url:              http://hyde.getpoole.com
-baseurl:          /
+# Config for your profile.
+title:            Friday Theme            # Site title
+name:             Friday Theme            # Your name
+avatar:           /theme/img/avatar.jpg   # Path to an avatar image
 
-author:
-  name:           'Deep Insiders'
-  # url:            deep-insiders.github.io
+# The theme uses the baseurl throughout, which is useful for running the entire
+# site under a subdir, like for this GitHub Pages deployment as a project site.
+baseurl: "/friday-theme"
 
-paginate:         5
+# Add a directory to hold misc pages, just to keep the root directory clean.
+include: ["_pages", "_portfolio"]
 
-# Custom vars
-version:          2.1.0
+# Wire in the SASS files in the theme directory.
+sass:
+  sass_dir: theme/_sass
+  style: compressed
 
-github:
-  repo:           https://github.com/poole/hyde
+# Turn the projects into a collection.
+collections:
+  projects:
+    output: true
+    title: Projects
+    permalink: /:collection/:name.html
+  portfolio:
+    output: true
+    title: portfolio
+    permalink: /:collection/:name.html
 
----
-layout: page
-title: testing
----
+defaults:
+# Turn the profile sidebar on for all pages by default, except for the
+# collections, where it is off and replaced by useful things on the sidebar.
+# To override this one a page, use
+#    show_profile: false
+# to hide the profile.
+  -
+    scope:
+      path: ""
+    values:
+      show_profile: true
+  -
+    scope:
+      path: "_posts"
+    values:
+      show_profile: false
+      layout: defaults/post
+  -
+    scope:
+      path: "_portfolio"
+    values:
+      show_profile: false
+      layout: defaults/portfolio
+  -
+    scope:
+      path: "_projects"
+    values:
+      show_profile: false
+      layout: defaults/project
+  -
+    scope:
+      path: "list"
+    values:
+      show_profile: false
+      layout: defaults/list
+
+
